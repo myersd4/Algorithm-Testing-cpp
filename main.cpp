@@ -12,7 +12,7 @@ void printList(list<int> li);
 
 int main(){
 
-	int size = 1000000;
+	int size = 100;
 	vector<int> vi0;
 	vector<int> vi;
 	list<int> li;
@@ -22,17 +22,34 @@ int main(){
 	vi = vi0;
 	copy(vi0.begin(), vi0.end(), back_inserter(li));
 
+
 	clock_t start = clock();
 	sort(vi.begin(), vi.end());
 	clock_t end = clock();
-
 	double sort_vector_time = (end - start)/60;
 
-	cout<<sort_vector_time<<endl;
+	clock_t start = clock();
+	sort(li.begin(), li.end());
+	clock_t end = clock();
+	double sort_list_time = (end - start)/60;
+
+	li.clear();
+	vi.clear();
+	copy(vi0.begin(), vi0.end(), back_inserter(li));
+
+	clock_t start = clock();
+	copy(li.begin(), li.end(), back_inserter(vi));
+	sort(vi.begin(), vi.end());
+	copy(vi.begin(), vi.end(), back_inserter(li));
+	clock_t end = clock();
+	double sort_list_via_copying_to_vector_time = (end - start)/60;
+
+
 
 	
 	
 	system("pause");
+	exit(0);
 	
 }
 
